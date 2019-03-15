@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: "{{ include "kubernetes-helm-test.fullname" . }}-test-connection"
+  labels:
+    app.kubernetes.io/name: {{ include "kubernetes-helm-test.name" . }}
+    helm.sh/chart: {{ include "kubernetes-helm-test.chart" . }}
+    app.kubernetes.io/instance: {{ .Release.Name }}
+    app.kubernetes.io/managed-by: {{ .Release.Service }}
+  annotations:
+    "helm.sh/hook": test-success
+spec:
+  containers:
+    - name: wget
+      image: busybox
+      command: ['wget']
+      args:  ['{{ include "kubernetes-helm-test.fullname" . }}:{{ .Values.service.port }}']
+  restartPolicy: Never

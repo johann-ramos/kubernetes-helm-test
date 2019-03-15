@@ -1,0 +1,3 @@
+*.yaml.dec
+*.yml.dec
+.sops.yaml

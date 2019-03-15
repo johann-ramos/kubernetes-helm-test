@@ -1,0 +1,20 @@
+# Default values for kubernetes-helm-test.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+replicaCount: 1
+
+name: {{ .Environment.Values.releaseName }}
+image:
+  repository: nginxdemos/hello
+  tag: latest
+  pullPolicy: IfNotPresent
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: LoadBalancer
+  externalPort: {{ .Environment.Values.externalPort }}
+  internalPort: 80
+  targetPort: 80

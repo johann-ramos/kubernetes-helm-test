@@ -1,0 +1,17 @@
+environments:
+  default:
+    values:
+    - ./apps/nginx/dev-values.yaml
+  dev:
+    values:
+    - ./apps/nginx/dev-values.yaml
+  stage:
+    values:
+    - ./apps/nginx/stage-values.yaml
+
+releases:
+- name: "{{ .Environment.Values.releaseName }}"
+  namespace: default
+  chart: ./apps/nginx
+  values:
+  - ./apps/nginx/values.yaml.gotmpl
