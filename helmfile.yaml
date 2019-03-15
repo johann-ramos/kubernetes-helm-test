@@ -5,9 +5,13 @@ environments:
   dev:
     values:
     - ./apps/nginx/dev-values.yaml
+    secrets:
+    - ./helm_vars/nginx/secrets.yaml
   stage:
     values:
     - ./apps/nginx/stage-values.yaml
+    secrets:
+    - ./helm_vars/nginx/secrets.yaml
 
 releases:
 - name: "{{ .Environment.Values.releaseName }}"
